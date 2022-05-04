@@ -10,36 +10,68 @@
 </head>
 
 <body class="container" style="margin-top: 50px;">
-    <table>
-        <thead>
-            <tr>
-                <th>Product Code</th>
-                <th>Product Name</th>
-                <th>Product Line</th>
-                <th>Product Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for( let i=0; i < data.length; i++){ %>
-                <tr>
-                    <td>
-                        <%= data[i].productCode %>
-                    </td>
-                    <td>
-                        <%= data[i].productName %>
-                    </td>
-                    <td>
-                        <%= data[i].productLine %>
-                    </td>
-                    <td>
-                        <%= data[i].buyPrice %>
-                    </td>
-                    <td>Tuscias</td>
-                </tr>
+    <% if(messages.success) { %>
+        <div class="alert alert-success" role="alert">
+            <%= messages.success %>
+        </div>
+        <% } %>
+            <% if(messages.error) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= messages.error %>
+                </div>
                 <% } %>
-        </tbody>
-    </table>
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-pills w=100">
+                                <li class="nav-pill-active">
+                                    <a class="nav-link">Products</a>
+                                </li>
+                                <li class="nav-pill ml-auto">
+                                    <a class="nav-link active" href="/products/add">Add Product</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <% if(data.length) { %>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Product Code</th>
+                                            <th scope="col">Product Name</th>
+                                            <th scope="col">Product Line</th>
+                                            <th scope="col">Product Price</th>
+                                            <th width="200px">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for( let i=0; i < data.length; i++){ %>
+                                            <tr>
+                                                <td>
+                                                    <%= data[i].productCode %>
+                                                </td>
+                                                <td>
+                                                    <%= data[i].productName %>
+                                                </td>
+                                                <td>
+                                                    <%= data[i].productLine %>
+                                                </td>
+                                                <td>
+                                                    <%= data[i].buyPrice %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-success edit" href="/products/edit/<%=data[i].productCode%>">Edit</a>
+                                                    <a class="btn btn-danger edit" href="/products/delete/<%=data[i].productCode%>">Delete</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                                <% } %>
+                                    <% if(!data.length) { %>
+                                        <p class="text-center">No products</p>
+                                        <% } %>
+                        </div>
+                    </div>
 </body>
 
 </html>

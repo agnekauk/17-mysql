@@ -1,10 +1,10 @@
 const createError = require('http-errors');
-import express from 'express';
-import path from 'path';
-import flash from 'flash';
-import session from 'express-session';
-import mysql from 'mysql';
-import connection from './lib/database';
+const express = require('express');
+const path = require('path');
+var flash = require('express-flash');
+const session = require('express-session');
+const mysql = require('mysql');
+const connection = require('./lib/database');
 
 const productsRouter = require('./routes/products');
 const app = express();
@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
     cookie: { maxAge: 60000 },
     store: new session.MemoryStore,
@@ -23,7 +24,7 @@ app.use(session({
 }));
 
 app.use(flash());
-app.use('products', productsRouter);
+app.use('/products', productsRouter);
 
 app.use((req, res, next) => {
     next(createError(404));
