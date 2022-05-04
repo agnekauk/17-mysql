@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body class="container" style="margin-top: 50px;">
+    <% if(messages.success) { %>
+        <div class="alert alert-success" role="alert">
+            <%= messages.success %>
+        </div>
+        <% } %>
+            <% if(messages.error) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= messages.error %>
+                </div>
+                <% } %>
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-pills w-100">
+                                <li class="nav-pill-active">
+                                    <a class="nav-lin"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>
+                                    <%= employeeNumber %>
+                                </li>
+                                <li>
+                                    <%= lastName %>
+                                </li>
+                                <li>
+                                    <%= firstName %>
+                                </li>
+                                <li>
+                                    <%= email %>
+                                </li>
+                                <li>
+                                    <%= jobTitle %>
+                                </li>
+                                <li>
+                                    <%= reportsToLastName %>
+                                </li>
+                                <li>
+                                    <%= reportsToFirstName %>
+                                </li>
+                                <li>
+                                    <%= reportsTojobTitle %>
+                                </li>
+                                <li>
+                                    <%= city %>
+                                </li>
+                                <li>
+                                    <%= phone %>
+                                </li>
+                                <li>
+                                    <%= addressLine1 %>
+                                </li>
+                                <li>
+                                    <%= postalCode %>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+</body>
+
+</html>

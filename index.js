@@ -7,6 +7,8 @@ const mysql = require('mysql');
 const connection = require('./lib/database');
 
 const productsRouter = require('./routes/products');
+const productLinesRouter = require('./routes/productlines');
+const employeesRouter = require('./routes/employees');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +27,9 @@ app.use(session({
 
 app.use(flash());
 app.use('/products', productsRouter);
+app.use('/productlines', productLinesRouter);
+app.use('/employees', employeesRouter);
+
 
 app.use((req, res, next) => {
     next(createError(404));

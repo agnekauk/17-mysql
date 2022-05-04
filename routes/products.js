@@ -69,7 +69,7 @@ router.post('/add', (req, res, next) => {
             }
         })
     }
-})
+});
 
 router.get('/delete/:productCode', (req, res, next) => {
     let productCode = req.params.productCode;
@@ -82,7 +82,7 @@ router.get('/delete/:productCode', (req, res, next) => {
             res.redirect('/products');
         }
     })
-})
+});
 
 router.get('/edit/:productCode', (req, res, next) => {
     let productCode = req.params.productCode;
@@ -146,5 +146,16 @@ router.post('/update/:productCode', (req, res, next) => {
         })
     }
 })
+
+router.get('/statistics', (req, res, next) => {
+    databaseConnection.query('SELECT * FROM order_statistics', (err, rows) => {
+        if (err) {
+            req.flash('error', err);
+            res.render('products/statistics', { data: '' });
+        } else {
+            res.render('products/statistics', { data: rows });
+        }
+    });
+});
 
 module.exports = router;
