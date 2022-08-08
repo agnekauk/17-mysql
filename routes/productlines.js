@@ -70,4 +70,17 @@ router.post('/add', (req, res, next) => {
     }
 });
 
+router.get('/delete/:productLine', (req, res, next) => {
+    let productLine = req.params.productLine;
+    databaseConnection.query('DELETE FROM productlines WHERE productLine ="' + productLine + '"', (err, result) => {
+        if (err) {
+            req.flash('error', err);
+            res.redirect('/productlines');
+        } else {
+            req.flash('success', 'Produktų linija, kurios pavadinimas yra ' + productLine + ' sėkmingai ištrintas.')
+            res.redirect('/productlines');
+        }
+    })
+});
+
 module.exports = router;
